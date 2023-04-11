@@ -25,9 +25,16 @@ class CoursesController < ApplicationController
   end
 
   def update
+    if @course.update(course_params)
+      redirect_to course_path(@course), notice: "Course was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @course.destroy
+    redirect_to courses_path, notice: "Course was successfully destroyed."
   end
 
   private

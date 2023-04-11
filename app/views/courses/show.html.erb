@@ -1,2 +1,24 @@
-<h1>Courses#show</h1>
-<p>Find me in app/views/courses/show.html.erb</p>
+<div class="container">
+  <h1><%= @course.title %></h1>
+  <p><%= @course.description %></p>
+  <p>Price: <%= number_to_currency(@course.price) %></p>
+  <p>Category: <%= @course.category %></p>
+  <p>Rating: <%= @course.rating %></p>
+    <div class="card-body">
+      <% if @course.syllabus.is_a?(ActiveStorage::Attached::Many) && @course.syllabus.attached? %>
+        <h5 class="card-title">Syllabus</h5>
+        <%= link_to @course.syllabus.filename, rails_blob_path(@course.syllabus, disposition: "attachment"), class: "btn btn-gradient" %>
+      <% end %>
+    </div>
+  <p>Syllabus: <%= @course.syllabus %></p>
+  <% if user_signed_in? && @course.user == current_user %>
+    <div class="d-flex">
+      <%= link_to edit_course_path(@course) do %>
+        <i class="fas fa-edit me-3"></i>
+      <% end %>
+      <%= link_to @course, method: :delete, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+        <i class="fas fa-trash-alt"></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>
