@@ -9,14 +9,13 @@ class CoursesController < ApplicationController
   end
 
   def new
-    @course = Course.new
+    @course = current_user.courses.build
   end
 
   def create
-    @course = Course.new(course_params)
-    @course.user = current_user
+    @course = current_user.courses.build(course_params)
     if @course.save
-      redirect_to course_path(@course)
+      redirect_to course_path(@course), notice: "Course was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -38,6 +37,6 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:title, :description, :price, :syllabus)
+    params.require(:course).permit(:title, :description, :price, :syllabus, :category)
   end
 end
