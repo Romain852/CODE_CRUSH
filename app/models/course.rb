@@ -1,5 +1,6 @@
 class Course < ApplicationRecord
   belongs_to :user
+  has_many :enrolments
 
   CATEGORIES = %w[Fullstack Data]
 
