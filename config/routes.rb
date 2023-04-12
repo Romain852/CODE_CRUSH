@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   resources :courses
-  get "users/:id/enrolments", to: "enrolments#index"
+  get "users/:id/enrolments", to: "enrolments#index", as: :enrolments
 end

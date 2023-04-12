@@ -17,6 +17,9 @@
           <li class="nav-item">
             <%= link_to "Messages", "#", class: "nav-link" %>
           </li>
+           <li class="nav-item">
+            <%= link_to "My Learning", enrolments_path(current_user), class: "nav-link" %>
+          </li>
           <li class="nav-item">
             <%= link_to "New Course", new_course_path, class: "nav-link" %>
           </li>

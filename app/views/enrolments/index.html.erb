@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>My learning track aka courses enrolled </h1>
+  <ul>
+    <% @enrolments.each do |enrolment| %>
+      <li>
+        <%= enrolment.course.title %>
+      </li>
+    <% end %>
+  </ul>
+</div>
