@@ -8,7 +8,7 @@ class EnrolmentsController < ApplicationController
     @enrolment = Enrolment.new(course: @course)
     @enrolment.user = current_user
     if @enrolment.save
-      redirect_to enrolments_path(current_user)
+      redirect_to enrolments_path
     else
       render :create, status: :unprocessable_entity
     end
