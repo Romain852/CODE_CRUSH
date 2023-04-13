@@ -11,6 +11,9 @@
       <% end %>
     </div>
   <p>Syllabus: <%= @course.syllabus %></p>
+  <% if user_signed_in? && current_user != @course.user %>
+    <%= link_to "Enrol", enrol_new_path(@course), class: "btn btn-success" %>
+  <% end %>
   <% if user_signed_in? && @course.user == current_user %>
     <div class="d-flex">
       <%= link_to edit_course_path(@course) do %>
