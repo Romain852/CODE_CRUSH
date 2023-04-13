@@ -16,11 +16,15 @@
   <% end %>
   <% if user_signed_in? && @course.user == current_user %>
     <div class="d-flex">
-      <%= link_to edit_course_path(@course) do %>
-        <i class="fas fa-edit me-3"></i>
+      <% if policy(@course).edit? %>
+        <%= link_to edit_course_path(@course) do %>
+          <i class="fas fa-edit me-3"></i>
+        <% end %>
       <% end %>
-      <%= link_to @course, method: :delete, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-        <i class="fas fa-trash-alt"></i>
+      <% if policy(@course).destroy? %>
+        <%= link_to @course, method: :delete, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
       <% end %>
     </div>
   <% end %>

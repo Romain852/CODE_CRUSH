@@ -3,13 +3,16 @@ class CoursesController < ApplicationController
 
   def index
     @courses = Course.all
+    authorize @course
   end
 
   def show
+    authorize @course
   end
 
   def new
     @course = current_user.courses.build
+    authorize @course
   end
 
   def create
@@ -19,12 +22,15 @@ class CoursesController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+    authorize @course
   end
 
   def edit
+    authorize @course
   end
 
   def update
+    authorize @course
     if @course.update(course_params)
       redirect_to course_path(@course), notice: "Course was successfully updated."
     else
@@ -33,6 +39,7 @@ class CoursesController < ApplicationController
   end
 
   def destroy
+    authorize @course
     @course.destroy
     redirect_to courses_path, notice: "Course was successfully destroyed."
   end
