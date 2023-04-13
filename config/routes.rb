@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   get "users/:id/enrolments", to: "enrolments#index", as: :enrolments
   # Enrol in course for currently signed-in user
   get "courses/:id/enrol", to: "enrolments#create", as: :enrol_new
+  # Add review to course
+  get "users/:id/enrolments/:id/reviews/new", to: "reviews#new", as: :new_review
 end

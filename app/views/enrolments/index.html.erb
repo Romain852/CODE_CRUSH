@@ -3,7 +3,11 @@
   <ul>
     <% @enrolments.each do |enrolment| %>
       <li>
-        <%= enrolment.course.title %>
+        <div class="card-body">
+          <h5 class="card-title"><%= enrolment.course.title %></h5>
+          <p class="card-text"><%= enrolment.course.description %></p>
+          <%= link_to "Course Content", course_path(enrolment.course), class: "btn btn-gradient" %>
+        </div>
       </li>
     <% end %>
   </ul>
