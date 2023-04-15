@@ -29,4 +29,12 @@ class CoursePolicy < ApplicationPolicy
   def new?
     create?
   end
+
+  def data?
+    true
+  end
+
+  def fullstack?
+    true
+  end
 end
