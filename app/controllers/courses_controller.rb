@@ -17,7 +17,6 @@ class CoursesController < ApplicationController
 
   def create
     @course = current_user.courses.build(course_params)
-    @course.session_end = @course.session_start + 7.days
     if @course.save
       redirect_to course_path(@course), notice: "Course was successfully created."
     else
@@ -46,7 +45,6 @@ class CoursesController < ApplicationController
   end
 
   def fullstack
-
     @courses = Course.where(category: "Fullstack")
     # raise
     authorize @courses
@@ -59,11 +57,15 @@ class CoursesController < ApplicationController
 
   private
 
+  def course_expired?(course)
+    course.session_end < Date.today
+  end
+
   def set_course
     @course = Course.find(params[:id])
   end
 
   def course_params
-    params.require(:course).permit(:title, :description, :price, :syllabus, :category, :session_start)
+    params.require(:course).permit(:title, :description, :price, :syllabus, :category, :session_start, :session_end)
   end
 end

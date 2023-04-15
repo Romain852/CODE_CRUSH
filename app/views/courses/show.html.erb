@@ -11,6 +11,8 @@
       <% end %>
     </div>
   <p>Syllabus: <%= @course.syllabus %></p>
+  <p>Next session start: <%= Date.parse(@course.session_start.to_s).strftime("%B %d, %Y") %></p>
+  <p>Next session end: <%= Date.parse(@course.session_end.to_s).strftime("%B %d, %Y") %></p>
   <% if user_signed_in? && current_user != @course.user %>
     <%= link_to "Enrol", enrol_new_course_path(@course), class: "btn btn-success" %>
   <% end %>

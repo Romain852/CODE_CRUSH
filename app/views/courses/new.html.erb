@@ -21,7 +21,10 @@
       <%= f.input :price, input_html: { class: "form-control" } %>
     </div>
     <div class="mb-3">
-      <%= f.input :session_start, as: :datetime, input_html: { class: "form-control" } %>
+      <%= f.input :session_start, as: :date, input_html: { class: "form-control" } %>
+    </div>
+      <div class="mb-3">
+      <%= f.input :session_end, as: :date, input_html: { class: "form-control" } %>
     </div>
     <%= f.button :submit, class: "btn btn-gradient" %>
   <% end %>
