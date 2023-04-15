@@ -1,15 +1,14 @@
 <div class="container">
   <h1>My learning track aka courses enrolled </h1>
   <ul>
-    <% @enrolments.each do |enrolment| %>
+    <% @current_user_enrolments.each do |enrolment| %>
       <li>
         <div class="card-body">
           <h5 class="card-title"><%= enrolment.course.title %></h5>
           <p class="card-text"><%= enrolment.course.description %></p>
-          <%= link_to "Course Content", course_path(enrolment.course), class: "btn btn-gradient" %>
-          <%= link_to "Review This Course", new_enrolment_review_path(enrolment), class: "btn btn-gradient" %>
+        <%= link_to "Course Content", course_path(enrolment.course), class: "btn btn-gradient" %>
+        <%= link_to "Review This Course", new_enrolment_review_path(enrolment), class: "btn btn-gradient" %>
         </div>
       </li>
     <% end %>
-  </ul>
 </div>

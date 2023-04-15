@@ -3,10 +3,12 @@ class CoursesController < ApplicationController
 
   def index
     @courses = Course.all
-    authorize @course
+    authorize Course
   end
 
   def show
+    @course = Course.find(params[:id])
+    @reviews = @course.reviews
     authorize @course
   end
 

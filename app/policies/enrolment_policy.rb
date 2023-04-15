@@ -4,21 +4,25 @@ class EnrolmentPolicy < ApplicationPolicy
       if user.admin?
         scope.all
       else
+        # scope.joins(:enrolment).where("enrolment.user_id = ?", user.id)
         scope.joins(:course).where("courses.user_id = ?", user.id)
       end
     end
   end
 
   def index?
-    user.admin? || user.enrolled_in?(record.course)
+    # user.admin? || user.enrolled_in?(record.course)
+    true
   end
 
   def show?
-    user.admin? || user.enrolled_in?(record.course)
+    # user.admin? || user.enrolled_in?(record.course)
+    true
   end
 
   def create?
-    user.enrolled_in?(record.course)
+    # user.enrolled_in?(record.course)
+    true
   end
 
   def update?
