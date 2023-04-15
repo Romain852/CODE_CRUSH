@@ -12,7 +12,7 @@
     </div>
   <p>Syllabus: <%= @course.syllabus %></p>
   <% if user_signed_in? && current_user != @course.user %>
-    <%= link_to "Enrol", enrol_new_course_path(@course), class: "btn btn-success" %>
+    <%= link_to "Enrol", enrol_new_course_path(@course), class: "btn-enrol" %>
   <% end %>
   <% if user_signed_in? && @course.user == current_user %>
     <div class="d-flex">

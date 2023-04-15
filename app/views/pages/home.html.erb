@@ -6,7 +6,7 @@
         <div class="card-body">
           <h5 class="card-title">Fullstack</h5>
           <p class="card-text">Explore our courses to become a Fullstack developer</p>
-          <%= link_to "View Courses", fullstack_courses_path, class: "btn btn-gradient" %>
+          <%= link_to "View Courses", fullstack_courses_path, class: "btn-view" %>
         </div>
       </div>
     </div>
@@ -15,7 +15,7 @@
         <div class="card-body">
           <h5 class="card-title">Data Science</h5>
           <p class="card-text">Learn the skills to become a Data Scientist</p>
-          <%= link_to "View Courses", data_courses_path, class: "btn btn-gradient" %>
+          <%= link_to "View Courses", data_courses_path, class: "btn-view" %>
         </div>
       </div>
     </div>
@@ -31,7 +31,7 @@
             <h5 class="card-title"><%= course.title %></h5>
             <p class="card-text" style="margin-bottom: 10px;"><%= course.description %></p>
             <p class="card-text"><strong>Price:</strong> <%= number_to_currency(course.price) %></p>
-            <%= link_to "View Course", course_path(course), class: "btn btn-gradient" %>
+            <%= link_to "View Course", course_path(course), class: "btn-view" %>
           </div>
         </div>
       </div>

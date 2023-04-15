@@ -1,2 +1,73 @@
 // Import page-specific CSS files here.
 @import "home";
+
+.btn-banner {
+  background: transparent;
+  border: 1px solid #ffffff;
+  color: #fff;
+  outline: none;
+  text-decoration: none;
+  padding: 5pt;
+  border-radius: 3pt;
+}
+
+svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  fill: none;
+  stroke: #fff;
+  stroke-dasharray: 150 480;
+  stroke-dashoffset: 150;
+}
+
+.btn-banner:hover {
+  background: #faae3a;
+  color: white;
+  border-radius: 3pt;
+  text-decoration: none;
+}
+
+.btn-banner:hover svg {
+  stroke-dashoffset: -480;
+}
+
+.btn-banner span {
+  color: white;
+  font-size: 18px;
+  font-weight: 100;
+}
+
+.btn-view {
+  background: linear-gradient(to top, #f2994a, #f2c94c);
+  color: #fff;
+  outline: none;
+  text-decoration: none;
+  padding: 5pt;
+  border-radius: 3pt;
+}
+
+
+.btn-view:hover {
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border-radius: 3pt;
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-enrol {
+  background: linear-gradient(to top, #7da667, #9ac782);
+  color: #fff;
+  outline: none;
+  text-decoration: none;
+  padding: 5pt;
+  border-radius: 3pt;
+}
+
+
+.btn-enrol:hover {
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border-radius: 3pt;
+  color: #fff;
+  text-decoration: none;
+}
