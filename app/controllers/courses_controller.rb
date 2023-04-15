@@ -45,12 +45,15 @@ class CoursesController < ApplicationController
   end
 
   def fullstack
+
     @courses = Course.where(category: "Fullstack")
     # raise
+    authorize @courses
   end
 
   def data
     @courses = Course.where(category: "Data")
+    authorize @courses
   end
 
   private
