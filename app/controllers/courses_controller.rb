@@ -44,6 +44,15 @@ class CoursesController < ApplicationController
     redirect_to courses_path, notice: "Course was successfully destroyed."
   end
 
+  def fullstack
+    @courses = Course.where(category: "Fullstack")
+    # raise
+  end
+
+  def data
+    @courses = Course.where(category: "Data")
+  end
+
   private
 
   def set_course
