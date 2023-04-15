@@ -1,0 +1,28 @@
+<div class="container">
+  <h1>Manage Users</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.first_name %> <%= user.last_name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.role %></td>
+          <td>
+            <%= link_to "Show", user_path(user), class: "btn btn-primary" %>
+            <%= link_to "Edit", edit_user_path(user), class: "btn btn-secondary" %>
+            <%= link_to "Delete", user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,57 @@
+<div class="container">
+  <h1>Edit User</h1>
+
+  <%= form_with(model: @user, url: user_path(@user), method: :patch) do |form| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+        <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :first_name %>
+      <%= form.text_field :first_name, class: "form-control" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :last_name %>
+      <%= form.text_field :last_name, class: "form-control" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :email %>
+      <%= form.email_field :email, class: "form-control" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :password %>
+      <%= form.password_field :password, class: "form-control" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :password_confirmation %>
+      <%= form.password_field :password_confirmation, class: "form-control" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :role %>
+      <%= form.select :role, options_for_select([["Student", "student"], ["Teacher", "teacher"]], @user.role), {}, class: "form-control" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :admin %>
+      <%= form.select :admin, options_for_select([["Yes", true], ["No", false]], @user.admin), {}, class: "form-control" %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Update User", class: "btn btn-primary" %>
+      <%= link_to "Cancel", users_path, class: "btn btn-secondary" %>
+    </div>
+  <% end %>
+</div>

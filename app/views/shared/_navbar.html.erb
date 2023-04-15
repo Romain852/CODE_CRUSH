@@ -18,11 +18,17 @@
             <%= link_to "Messages", "#", class: "nav-link" %>
           </li>
            <li class="nav-item">
-            <%= link_to "My Learning", enrolments_path(current_user), class: "nav-link" %>
+            <%= link_to "My Learning", user_enrolments_path(current_user), class: "nav-link" %>
           </li>
+
           <li class="nav-item">
-            <%= link_to "New Course", new_course_path, class: "nav-link" %>
+            <%= link_to "New Course", new_course_path, class: "nav-link", if: policy(Course).new? %>
           </li>
+          <% if current_user.admin? %>
+            <li class="nav-item">
+              <%= link_to "Manage Users", manage_users_path, class: "nav-link" %>
+            </li>
+          <% end %>
           <li class="nav-item dropdown">
             <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
