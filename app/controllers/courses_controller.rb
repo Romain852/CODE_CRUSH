@@ -3,7 +3,7 @@ class CoursesController < ApplicationController
 
   def index
     @courses = Course.all
-    authorize @course
+    authorize Course
   end
 
   def show

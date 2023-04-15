@@ -34,6 +34,10 @@ class UsersController < ApplicationController
     redirect_to users_path, notice: "User was successfully destroyed."
   end
 
+  def enrolled_in?(course)
+    enrolments.where(course_id: course.id)
+  end
+
   private
 
   def set_user
@@ -41,9 +45,7 @@ class UsersController < ApplicationController
     authorize @user
   end
 
-
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :bio, :role, :image_url)
   end
-
 end
