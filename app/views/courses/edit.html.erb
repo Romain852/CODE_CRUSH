@@ -1,36 +1,4 @@
 <div class="container">
   <h1>Edit Course</h1>
-  <%= form_with(model: @course, local: true) do |form| %>
-    <% if @course.errors.any? %>
-      <div class="alert alert-danger" role="alert">
-        <ul>
-          <% @course.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <div class="mb-3">
-      <%= form.label :title, class: "form-label" %>
-      <%= form.text_field :title, class: "form-control", placeholder: "Enter course title" %>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :description, class: "form-label" %>
-      <%= form.text_area :description, class: "form-control", placeholder: "Enter course description" %>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :price, class: "form-label" %>
-      <%= form.number_field :price, class: "form-control", placeholder: "Enter course price" %>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :syllabus, class: "form-label" %>
-      <%= form.text_area :syllabus, class: "form-control" %>
-    </div>
-
-    <%= form.submit "Update Course", class: "btn btn-gradient" %>
-  <% end %>
+  <%= render 'form', course: @course %>
 </div>
