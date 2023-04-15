@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get :fullstack
       get :data
     end
-end
+  end
   # Show enrolments for currently signed-in user
   get "enrolments", to: "enrolments#index", as: :enrolments
   # Enrol in course for currently signed-in user
@@ -26,9 +26,9 @@ end
     end
   end
 
- 
   # Add review to course
   # get "users/:user_id/enrolments/:enrolment_id/reviews/new", to: "reviews#new", as: :user_enrolment_reviews
   resources :enrolments do
     resources :reviews, only: %i[new create]
+  end
 end
