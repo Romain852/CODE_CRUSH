@@ -7,6 +7,8 @@ class CoursesController < ApplicationController
   end
 
   def show
+    @course = Course.find(params[:id])
+    @reviews = @course.reviews
     authorize @course
   end
 

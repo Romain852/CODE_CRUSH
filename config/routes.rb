@@ -27,4 +27,7 @@ Rails.application.routes.draw do
   get 'users', to: 'users#index'
 
   get 'dashboard', to: 'pages#dashboard'
+
+  resources :reviews, only: [:new, :create, :edit, :update, :destroy]
+
 end
