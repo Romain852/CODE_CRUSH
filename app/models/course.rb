@@ -3,7 +3,7 @@ class Course < ApplicationRecord
   has_many :enrolments, dependent: :destroy
   has_many :students, through: :enrolments, source: :user
   has_many :reviews, through: :enrolments
-  has_one_attached :syllabus
+  has_one_attached :photo
 
   CATEGORIES = %w[Fullstack Data]
 
@@ -11,5 +11,14 @@ class Course < ApplicationRecord
   validates :description, presence: true
   validates :price, presence: true
   validates :category, presence: true
+  validates :category, inclusion: { in: CATEGORIES }
   validates :syllabus, presence: true
+
+  serialize :syllabus, Array
+  after_initialize :set_default_syllabus
+
+  def set_default_syllabus
+    self.syllabus ||= []
+  end
+
 end

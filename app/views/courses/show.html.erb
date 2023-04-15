@@ -10,7 +10,7 @@
       <%= link_to @course.syllabus.filename, rails_blob_path(@course.syllabus, disposition: "attachment"), class: "btn btn-gradient" %>
     <% end %>
   </div>
-  <p>Syllabus: <%= @course.syllabus %></p>
+  Syllabus: <%= @course.syllabus.join("\n") %>
   <% if user_signed_in? && current_user != @course.user %>
     <%= link_to "Enrol", enrol_new_course_path(@course), class: "btn-enrol" %>
   <% end %>
