@@ -8,9 +8,23 @@
           <p class="card-text"><%= @course.description %></p>
           <p class="card-text small-text">💰 <%= number_to_currency(@course.price) %></p>
           <p class="card-text small-text">Category: <%= @course.category %></p>
-          <p class="card-text small-text">Syllabus: <%= @course.syllabus.join("\n") %></p>
-          <p>Next session start: <%= Date.parse(@course.session_start.to_s).strftime("%B %d, %Y") %></p>
-          <p>Next session end: <%= Date.parse(@course.session_end.to_s).strftime("%B %d, %Y") %></p>
+          <p class="card-text small-text">Syllabus: <%= @course.syllabus%></p>
+          <% if @course.session_start.present? %>
+            <p>Next session start: <%= parse_date(@course.session_start) %></p>
+          <% end %>
+          <% if @course.session_end.present? %>
+            <p>Next session end: <%= parse_date(@course.session_end) %></p>
+          <% end %>
+
+          <%# Helper method to parse date %>
+          <% def parse_date(date) %>
+            <% begin %>
+              <%= Date.parse(date.to_s).strftime("%B %d, %Y") %>
+            <% rescue ArgumentError %>
+              Invalid date
+            <% end %>
+          <% end %>
+
           <%# <% if @course.syllabus.is_a?(ActiveStorage::Attached::Many) && @course.syllabus.attached? %>
             <%# <h5 class="card-title">Syllabus</h5> %>
             <%# <%= link_to @course.syllabus.filename, rails_blob_path(@course.syllabus, disposition: "attachment"), class: "btn btn-gradient" %>

@@ -67,7 +67,6 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-
-    params.require(:course).permit(:title, :description, :price, :category, :photo, syllabus: [], photos: [], :session_start, :session_end).merge(user: current_user)
+    params.require(:course).permit(:title, :description, :price, :category, :photo, syllabus: [], photos: [], :session_start => [], :session_end => []).merge(user: current_user)
   end
 end
