@@ -1,5 +1,7 @@
+
 puts "creating courses"
 courses = [  "Ruby",  "CSS",  "JavaScript",  "Databases",  "Communication",  "Product Management",  "DevOps",  "Entrepreneurship",  "HTML",  "UX Design",  "Data Science",  "Python",  "Rails"]
+
 courses.each do |course|
   Course.create(
     title: course,
@@ -12,4 +14,5 @@ courses.each do |course|
     session_end: Time.now + 14.days
   )
 end
+
 puts "finished creating #{courses.length} courses"

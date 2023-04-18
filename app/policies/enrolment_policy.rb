@@ -11,17 +11,14 @@ class EnrolmentPolicy < ApplicationPolicy
   end
 
   def index?
-    # user.admin? || user.enrolled_in?(record.course)
     true
   end
 
   def show?
-    # user.admin? || user.enrolled_in?(record.course)
     true
   end
 
   def create?
-    # user.enrolled_in?(record.course)
     true
   end
 
@@ -32,4 +29,9 @@ class EnrolmentPolicy < ApplicationPolicy
   def destroy?
     user.admin? || user.enrolled_in?(record.course)
   end
+
+  def edit?
+    update?
+  end
+
 end
