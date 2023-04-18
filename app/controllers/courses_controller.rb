@@ -58,11 +58,16 @@ class CoursesController < ApplicationController
 
   private
 
+  def course_expired?(course)
+    course.session_end < Date.today
+  end
+
   def set_course
     @course = Course.find(params[:id])
   end
 
   def course_params
-    params.require(:course).permit(:title, :description, :price, :category, :photo, syllabus: [], photos: []).merge(user: current_user)
+
+    params.require(:course).permit(:title, :description, :price, :category, :photo, syllabus: [], photos: [], :session_start, :session_end).merge(user: current_user)
   end
 end

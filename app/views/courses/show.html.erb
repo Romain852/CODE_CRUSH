@@ -9,6 +9,8 @@
           <p class="card-text small-text">💰 <%= number_to_currency(@course.price) %></p>
           <p class="card-text small-text">Category: <%= @course.category %></p>
           <p class="card-text small-text">Syllabus: <%= @course.syllabus.join("\n") %></p>
+          <p>Next session start: <%= Date.parse(@course.session_start.to_s).strftime("%B %d, %Y") %></p>
+          <p>Next session end: <%= Date.parse(@course.session_end.to_s).strftime("%B %d, %Y") %></p>
           <%# <% if @course.syllabus.is_a?(ActiveStorage::Attached::Many) && @course.syllabus.attached? %>
             <%# <h5 class="card-title">Syllabus</h5> %>
             <%# <%= link_to @course.syllabus.filename, rails_blob_path(@course.syllabus, disposition: "attachment"), class: "btn btn-gradient" %>
@@ -36,7 +38,6 @@
         </div>
       </div>
     </div>
-
     <div class="col-5">
             <h2>✴️ Reviews</h2>
       <div class="card">
