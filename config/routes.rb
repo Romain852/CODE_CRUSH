@@ -10,6 +10,11 @@ Rails.application.routes.draw do
     end
   end
 
+  Rails.application.routes.draw do
+    get '/my_courses', to: 'courses#my_courses'
+  end
+
+
   resources :courses do
     get "enrolments", to: "enrolments#index", as: :enrolments
     get "enrol", to: "enrolments#create", as: :enrol_new, on: :member
