@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: %i[show edit update destroy]
+  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:show, :index]
 
   def index
     @courses = Course.all
@@ -7,7 +8,6 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.find(params[:id])
     @reviews = @course.reviews
     authorize @course
   end
@@ -19,12 +19,12 @@ class CoursesController < ApplicationController
 
   def create
     @course = current_user.courses.build(course_params)
+    authorize @course
     if @course.save
       redirect_to course_path(@course), notice: "Course was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
-    authorize @course
   end
 
   def edit
@@ -47,9 +47,7 @@ class CoursesController < ApplicationController
   end
 
   def fullstack
-
     @courses = Course.where(category: "Fullstack")
-    # raise
     authorize @courses
   end
 
@@ -65,6 +63,6 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:title, :description, :price, :syllabus, :category)
+    params.require(:course).permit(:title, :description, :price, :category, :photo, syllabus: [], photos: []).merge(user: current_user)
   end
 end
