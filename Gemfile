@@ -82,3 +82,4 @@ end
 
 gem "bootstrap", "~> 5.1.3"
 gem "pundit"
+gem "faker"

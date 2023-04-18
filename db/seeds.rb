@@ -1,3 +1,4 @@
+
 courses = [
           "Ruby",
           "CSS",
@@ -26,3 +27,4 @@ courses.each do |course|
     session_end: Time.now + 14.days
   )
 end
+

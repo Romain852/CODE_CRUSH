@@ -1,37 +1,37 @@
 <div class="container">
   <div class="row">
-    <h1 class="mt-1">By category</h1>
+    <h1 class="mt-1">BY CATEGORY</h1>
     <div class="col-md-6">
-      <div class="card mb-4">
+      <div class="card category-card">
         <div class="card-body">
-          <h5 class="card-title">Fullstack</h5>
+          <h2 class="card-title">Fullstack</h2>
           <p class="card-text">Explore our courses to become a Fullstack developer</p>
-          <%= link_to "View Courses", fullstack_courses_path, class: "btn btn-gradient" %>
+          <%= link_to "View Courses", fullstack_courses_path, class: "btn-view" %>
         </div>
       </div>
     </div>
     <div class="col-md-6">
-      <div class="card mb-4">
-        <div class="card-body">
-          <h5 class="card-title">Data Science</h5>
+      <div class="card mb-4 category-card">
+        <div class="card-body category-card">
+          <h2 class="card-title">Data Science</h2>
           <p class="card-text">Learn the skills to become a Data Scientist</p>
-          <%= link_to "View Courses", data_courses_path, class: "btn btn-gradient" %>
+          <%= link_to "View Courses", data_courses_path, class: "btn-view" %>
         </div>
       </div>
     </div>
   </div>
 
-  <h1>All Courses</h1>
+  <h1>ALL COURSES</h1>
   <div class="row">
     <% @courses.each do |course| %>
       <div class="col-md-4">
         <div class="card mb-4">
           <img src="https://via.placeholder.com/400x400" class="card-img-top" style="margin-bottom: 20px;">
           <div class="card-body">
-            <h5 class="card-title"><%= course.title %></h5>
+            <h4 class="card-title"><%= course.title %></h4>
             <p class="card-text" style="margin-bottom: 10px;"><%= course.description %></p>
-            <p class="card-text"><strong>Price:</strong> <%= number_to_currency(course.price) %></p>
-            <%= link_to "View Course", course_path(course), class: "btn btn-gradient" %>
+            <p class="card-text small-text"> 💰 <%= number_to_currency(course.price) %></p>
+            <%= link_to "Course details", course_path(course), class: "btn-view" %>
           </div>
         </div>
       </div>

@@ -1,31 +1,4 @@
 <div class="container">
   <h1 class="my-5">CREATE A NEW COURSE</h1>
-  <%= simple_form_for(@course, html: { class: "form-horizontal" }) do |f| %>
-    <div class="mb-3">
-      <%= f.input :title, class: "form-control" %>
-    </div>
-    <div class="mb-3">
-      <%= f.input :description, as: :text, input_html: { class: "form-control" } %>
-    </div>
-    <div class="mb-3">
-      <%= f.input :syllabus, input_html: { class: "form-control" } %>
-    </div>
-    <div class="mb-3">
-      <%= f.label :category, class: "form-label" %>
-      <%= f.select :category, Course::CATEGORIES, {}, { class: "form-select" } %>
-    </div>
-    <div class="mb-3">
-      <%= f.input :photo, as: :file, input_html: { class: "form-control" } %>
-    </div>
-    <div class="mb-3">
-      <%= f.input :price, input_html: { class: "form-control" } %>
-    </div>
-    <div class="mb-3">
-      <%= f.input :session_start, as: :date, input_html: { class: "form-control" } %>
-    </div>
-      <div class="mb-3">
-      <%= f.input :session_end, as: :date, input_html: { class: "form-control" } %>
-    </div>
-    <%= f.button :submit, class: "btn btn-gradient" %>
-  <% end %>
+  <%=  render 'form', course: @course %>
 </div>
