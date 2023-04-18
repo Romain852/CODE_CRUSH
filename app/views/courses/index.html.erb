@@ -8,6 +8,8 @@
             <h5 class="card-title"><%= course.title %></h5>
             <p class="card-text"><%= course.description %></p>
             <p class="card-text"><strong>Price:</strong> <%= course.price %></p>
+            <p class="card-text">Next session start: <%= Date.parse(@course.session_start.to_s).strftime("%B %d, %Y") %></p>
+            <p class="card-text">Next session end: <%= Date.parse(@course.session_end.to_s).strftime("%B %d, %Y") %></p>
             <%= link_to "View Course", course_path(course), class: "btn btn-gradient" %>
             <% if user_signed_in? && current_user != course.user %>
               <%= link_to "Enrol", enrol_new_path(course), class: "btn btn-success" %>
