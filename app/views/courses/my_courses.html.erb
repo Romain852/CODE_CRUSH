@@ -1,0 +1,24 @@
+<h1>My Courses</h1>
+
+<% if current_user.enrolled_courses.any? %>
+  <div class="row">
+    <% current_user.enrolled_courses.each do |course| %>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <%= link_to course_path(course) do %>
+            <%# <%= image_tag course.image_url, class: "card-img-top" %> %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= course.title %></h5>
+            <p class="card-text"><%= course.description %></p>
+            <p class="card-text"><%= course.syllabus %></p>
+            <%= link_to "Leave Course", enrollment_path(current_user.enrollment_for(course)), method: :delete, class: "btn btn-danger" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>You haven't enrolled in any courses yet.</p>
+  <%= link_to "Browse Courses", courses_path, class: "btn btn-primary" %>
+<% end %>

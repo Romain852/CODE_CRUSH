@@ -4,8 +4,15 @@ class CoursesController < ApplicationController
 
   def index
     @courses = Course.all
+    if params[:query].present?
+      @courses = Course.search(params[:query])
+    else
+      @courses = Course.all
+    end
     authorize Course
   end
+
+
 
   def show
     @reviews = @course.reviews
@@ -41,6 +48,7 @@ class CoursesController < ApplicationController
   end
 
   def destroy
+    @course = Course.find(params[:id])
     authorize @course
     @course.destroy
     redirect_to courses_path, notice: "Course was successfully destroyed."

@@ -7,7 +7,18 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
+    <div class="row justify-content-center">
+        <div class="col-12">
+          <%= form_with url: courses_path, method: :get, class: "d-flex" do %>
+            <%= text_field_tag :query,
+                  params[:query],
+                  class: "form-control",
+                  placeholder: "Type a keyword"
+              %>
+            <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+          <% end %>
+        </div>
+    </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
@@ -18,9 +29,12 @@
             <%= link_to "💻 My Learning", enrolments_path, class: "nav-link" %>
           </li>
 
-          <li class="nav-item">
-            <%= link_to "🆕 New Course", new_course_path, class: "nav-link", if: policy(Course).new? %>
-          </li>
+          <% if policy(Course).new? %>
+            <li class="nav-item">
+              <%= link_to "🆕 New Course", new_course_path, class: "nav-link" %>
+            </li>
+          <% end %>
+
           <% if current_user.admin? %>
             <li class="nav-item">
               <%= link_to "🤓 Manage Users", manage_users_path, class: "nav-link" %>
