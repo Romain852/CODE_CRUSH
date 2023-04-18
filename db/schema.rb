@@ -47,6 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_15_045755) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "photo"
     t.datetime "session_start"
     t.datetime "session_end"
     t.index ["user_id"], name: "index_courses_on_user_id"
