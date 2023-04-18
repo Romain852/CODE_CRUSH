@@ -1,8 +1,16 @@
 <div class="banner mb-3" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_url("banner.jpg") %>);">
-  <div class="container">
-    <h1>CODE CRUSH <strong></h1>
-    <p>A coding affair.</p>
-    <%= link_to "Create Account", new_user_registration_path, class: "btn-banner" %>
+  <div class="container text-center">
+    <div class="row">
+      <h1>CODE CRUSH <strong></h1>
+      <p>A coding affair.</p>
+    </div>
+    <div class="row text-center mt-5">
+      <div class="column">
+        <p>Check out available courses by category</p>
+        <%= link_to "See Fulltstack Courses", fullstack_courses_path, class: "btn-banner" %>
+        <%= link_to "See Data Courses", data_courses_path, class: "btn-banner" %>
+      </div>
+    </div>
   </div>
 </div>
 <%# url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/background.png) %>

@@ -1,41 +1,92 @@
-.btn-ghost {
-  color: #4A4A4A;
-  border: 1px solid #4A4A4A;
-  padding: 8px 24px;
-  border-radius: 50px;
+.btn-banner {
+  background: transparent;
+  border: 1px solid #ffffff;
   font-weight: lighter;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
+  font-size: small;
+  color: #fff;
+  outline: none;
+  text-decoration: none;
+  padding: 5pt;
+  border-radius: 3pt;
+
+  &:hover {
+    background: orange;
+    color: white;
+    border-radius: 3pt;
+    text-decoration: none;
+  }
 }
 
-.btn-ghost:hover {
-  opacity: 1;
-}
-
-.btn-flat {
+.btn-view {
+  background: linear-gradient(to top, #faae3a, #fac03a);
   color: white;
-  padding: 8px 24px;
-  border-radius: 4px;
-  background: #670BFF;
-  transition: background 0.3s ease;
+  outline: none;
+  font-weight: lighter;
+  font-size: small;
+  text-decoration: none;
+  padding: 5pt;
+  border-radius: 3pt;
+  box-shadow: rgba(83, 44, 0, 0.18) 0px 2px 4px 0px inset;
+
+  &:hover {
+    // box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-radius: 3pt;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: rgba(83, 44, 0, 0.28) 0px 3px 6px 0px inset;
+  }
 }
 
-.btn-flat:hover {
-  background: #4D04C4;
-  color: white;
+.btn-enrol {
+  background: linear-gradient(to top, #7da667, #9ac782);
+  box-shadow: rgba(50, 83, 0, 0.18) 0px 2px 4px 0px inset;
+  color: #fff;
+  outline: none;
+  font-weight: lighter;
+  font-size: small;
+  text-decoration: none;
+  padding: 5pt;
+  border-radius: 3pt;
+
+  &:hover {
+    box-shadow: rgba(50, 83, 0, 0.28) 0px 3px 6px 0px inset;
+    border-radius: 3pt;
+    color: #fff;
+    text-decoration: none;
+  }
 }
 
-.btn-gradient {
-  color: white;
-  padding: 8px 24px;
-  border-radius: 4px;
-  font-weight: bold;
-  background: linear-gradient(#167FFB, #0F60C4);
-  transition: background 0.3s ease;
-  border: 1px solid #0F60C4;
+.btn-edit {
+  background: linear-gradient(to top, #6e6e6e, #959595);
+  box-shadow: rgba(86, 86, 86, 0.18) 0px 2px 4px 0px inset;
+  color: #fff;
+  outline: none;
+  font-weight: lighter;
+  font-size: small;
+  text-decoration: none;
+  padding: 5pt;
+  border-radius: 3pt;
+
+  &:hover {
+    box-shadow: rgba(86, 86, 86, 0.5) 0px 3px 6px 0px inset;
+    border-radius: 3pt;
+    color: #fff;
+    text-decoration: none;
+  }
 }
 
-.btn-gradient:hover {
-  background: linear-gradient(#147EFF, #0F67DA);
-  color: white;
+.fa-edit {
+  color: rgb(100, 100, 100);
+
+  &:hover {
+    transform: scale(1.3);
+  }
+}
+
+.fa-trash-alt {
+  color: rgb(131, 43, 43);
+
+  &:hover {
+    transform: scale(1.3);
+  }
 }
