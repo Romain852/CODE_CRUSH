@@ -11,7 +11,7 @@ class CoursePolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    user.role == 1 || user.admin?
   end
 
   def update?
@@ -35,6 +35,10 @@ class CoursePolicy < ApplicationPolicy
   end
 
   def fullstack?
+    true
+  end
+
+  def search?
     true
   end
 end

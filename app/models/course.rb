@@ -1,4 +1,6 @@
 class Course < ApplicationRecord
+  include PgSearch::Model
+
   belongs_to :user
   has_many :enrolments, dependent: :destroy
   has_many :students, through: :enrolments, source: :user
@@ -20,5 +22,11 @@ class Course < ApplicationRecord
   def set_default_syllabus
     self.syllabus ||= []
   end
+
+  pg_search_scope :search,
+  against: [:title, :description],
+  using: {
+    tsearch: { prefix: true }
+  }
 
 end
