@@ -2,7 +2,7 @@ class EnrolmentPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
     #   if user.admin?
-    #     scope.all
+        scope.all
     #   else
     #     # scope.joins(:enrolment).where("enrolment.user_id = ?", user.id)
     #     scope.joins(:course).where("courses.user_id = ?", user.id)

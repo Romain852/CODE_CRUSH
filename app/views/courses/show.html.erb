@@ -10,10 +10,10 @@
           <p class="card-text small-text">Category: <%= @course.category %></p>
           <p class="card-text small-text">Syllabus: <%= @course.syllabus%></p>
           <% if @course.session_start.present? %>
-            <p>Next session start: <%= parse_date(@course.session_start) %></p>
+            <p>Next session start: <%= Date.parse(@course.session_start.to_s).strftime("%B %d, %Y") %></p>
           <% end %>
           <% if @course.session_end.present? %>
-            <p>Next session end: <%= parse_date(@course.session_end) %></p>
+            <p>Next session end: <%= Date.parse(@course.session_end.to_s).strftime("%B %d, %Y") %></p>
           <% end %>
 
           <%# Helper method to parse date %>
