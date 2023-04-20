@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="row">
-    <h1 class="mt-2"><%= @course.title %></h1>
+    <h1 class="mt-2 show-title"><%= @course.title %></h1>
 
     <div class="col-7">
       <div class="card">
@@ -10,45 +10,31 @@
           <p class="card-text small-text">Category: <%= @course.category %></p>
           <p class="card-text small-text">Syllabus: <%= @course.syllabus%></p>
           <% if @course.session_start.present? %>
-            <p>Next session start: <%= parse_date(@course.session_start) %></p>
+            <p class="card-text">Next session start: <%= Date.parse(@course.session_start.to_s).strftime("%B %d, %Y") %></p>
           <% end %>
           <% if @course.session_end.present? %>
-            <p>Next session end: <%= parse_date(@course.session_end) %></p>
+            <p class="card-text">Next session end: <%= Date.parse(@course.session_end.to_s).strftime("%B %d, %Y") %></p>
           <% end %>
-
-          <%# Helper method to parse date %>
-          <% def parse_date(date) %>
-            <% begin %>
-              <%= Date.parse(date.to_s).strftime("%B %d, %Y") %>
-            <% rescue ArgumentError %>
-              Invalid date
-            <% end %>
-          <% end %>
-
           <div>
-            <% if user_signed_in? && current_user != @course.user %>
-              <% if current_user.enrolled_in?(@course) %>
-                <%= link_to "Unenroll", enrol_path(@course), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to unenroll from this course?" }, class: "btn-unenroll" %>
+            <% if !user_signed_in? %>
+                <%= link_to "Enroll", new_user_session_path, class: "btn-enrol" %>
+              <% elsif current_user == @course.user %>
+                <% if policy(@course).edit? %>
+                  <%= link_to edit_course_path(@course) do %>
+                    <i class="fas fa-edit me-3 "></i>
+                  <% end %>
+                <% end %>
+                <% if policy(@course).destroy? %>
+                  <%= link_to @course, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this course?" } do %>
+                    <i class="fas fa-trash-alt"></i>
+                  <% end %>
+                <% end %>
+              <% elsif current_user.enrolled_in?(@course) %>
+                <%= button_to "Unenroll", enrolment_path(id: @enrolment.id, course_id: @course.id), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to unenroll from this course?" }, class: "btn btn-danger" %>
               <% else %>
                 <%= link_to "Enroll", enrol_new_course_path(@course), class: "btn-enrol" %>
               <% end %>
-            <% end %>
-          </div>
-
-          <% if user_signed_in? && @course.user == current_user %>
-            <div class="d-flex">
-              <% if policy(@course).edit? %>
-                <%= link_to edit_course_path(@course) do %>
-                  <i class="fas fa-edit me-3 "></i>
-                <% end %>
-              <% end %>
-              <% if policy(@course).destroy? %>
-                <%= link_to @course, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this course?" } do %>
-                  <i class="fas fa-trash-alt"></i>
-                <% end %>
-              <% end %>
             </div>
-          <% end %>
         </div>
       </div>
     </div>
@@ -70,4 +56,4 @@
         </div>
       </div>
     </div>
-  </div
+  </div>

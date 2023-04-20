@@ -26,16 +26,13 @@ Rails.application.routes.draw do
 
   resources :enrolments do
     resources :reviews, only: [:new, :create]
+    delete :remove, on: :member
   end
+
 
   get 'users', to: 'users#index'
 
   get 'dashboard', to: 'pages#dashboard'
 
   resources :reviews, only: [:new, :create, :edit, :update, :destroy]
-
-  delete "enrol/:id", to: "enrolments#destroy", as: :enrol
-  delete 'enrolments/:id/remove', to: 'enrolments#remove_enrolment', as: 'remove_enrolment'
-
-
 end

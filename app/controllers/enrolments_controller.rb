@@ -1,7 +1,7 @@
 class EnrolmentsController < ApplicationController
   before_action :set_enrolment, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_enrolment, except: [:create]
-  # before_action :set_course
+
+  before_action :set_course, only: [:new, :create]
 
   def index
     @enrolments = policy_scope(current_user.enrolments)
@@ -13,15 +13,12 @@ class EnrolmentsController < ApplicationController
   end
 
   def new
-    @course = Course.find(params[:course_id])
+    authorize
     @enrolment = @course.enrolments.build
     authorize @enrolment
   end
 
   def create
-    @course = Course.find(params[:id])
-    authorize @course
-
     @enrolment = Enrolment.new(course: @course)
     @enrolment.user = current_user
     authorize @enrolment
@@ -33,13 +30,14 @@ class EnrolmentsController < ApplicationController
     end
   end
 
-
-
   def destroy
-    @enrolment = current_user.enrolments.find(params[:enrolment_id])
+    @enrolment = current_user.enrolments.find(params[:id])
     authorize @enrolment
-    @enrolment.destroy
-    redirect_to enrolments_path, notice: 'Enrolment was successfully destroyed.'
+    if @enrolment.destroy
+      redirect_to enrolments_path, notice: 'Enrolment was successfully cancelled.'
+    else
+      redirect_to enrolments_path, alert: 'Enrolment could not be cancelled.'
+    end
   end
 
   private
@@ -50,10 +48,6 @@ class EnrolmentsController < ApplicationController
 
   def enrolment_params
     params.require(:enrolment).permit(:course_id, :user_id)
-  end
-
-  def authorize_enrolment
-    authorize current_user.enrolments
   end
 
   def set_course

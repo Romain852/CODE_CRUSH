@@ -3,6 +3,8 @@ h1 {
   font-size: x-large;
   font-weight: bolder;
   color: rgb(100, 100, 100);
+  z-index: 10;
+  position: relative;
 }
 
 h2 {
@@ -40,4 +42,9 @@ body {
 
 .small-text {
   font-size: small;
+}
+
+
+.show-title {
+  margin-top: 80px; /* adjust the value as needed */
 }

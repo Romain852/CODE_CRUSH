@@ -1,6 +1,7 @@
 class EnrolmentPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
+      scope.all
     #   if user.admin?
     #     scope.all
     #   else
@@ -36,6 +37,22 @@ class EnrolmentPolicy < ApplicationPolicy
 
   def new?
     create?
+  end
+
+  def data?
+    true
+  end
+
+  def fullstack?
+    true
+  end
+
+  def search?
+    true
+  end
+
+  def enroll?
+    true
   end
 
 end

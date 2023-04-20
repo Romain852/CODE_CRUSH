@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authenticate_user!, except: [:show, :index, :data, :fullstack]
 
   def index
     @courses = Course.all
@@ -18,6 +18,7 @@ class CoursesController < ApplicationController
 
   def show
     @reviews = @course.reviews
+    @enrolment = @course.enrolments.find_by(user: current_user)
     authorize @course
   end
 
@@ -68,7 +69,7 @@ class CoursesController < ApplicationController
 
   # Code added to cancel enrolments
   def cancel_enrolment
-    @enrolment = current_user.enrolments.find(params[:id])
+    @enrolment = current_user.enrolments.find_by(course_id: params[:course_id], id: params[:id])
     authorize @enrolment
     if @enrolment.destroy
       redirect_to enrolments_path, notice: 'Enrolment was successfully cancelled.'
@@ -76,6 +77,7 @@ class CoursesController < ApplicationController
       redirect_to enrolments_path, alert: 'Enrolment could not be cancelled.'
     end
   end
+
 
   private
 
