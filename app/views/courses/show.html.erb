@@ -25,35 +25,36 @@
             <% end %>
           <% end %>
 
-          <%# <% if @course.syllabus.is_a?(ActiveStorage::Attached::Many) && @course.syllabus.attached? %>
-            <%# <h5 class="card-title">Syllabus</h5> %>
-            <%# <%= link_to @course.syllabus.filename, rails_blob_path(@course.syllabus, disposition: "attachment"), class: "btn btn-gradient" %>
-          <%# <% end %>
-
           <div>
-          <% if user_signed_in? && current_user != @course.user %>
-            <%= link_to "Enrol", enrol_new_course_path(@course), class: "btn-enrol" %>
-          <% end %>
+            <% if user_signed_in? && current_user != @course.user %>
+              <% if current_user.enrolled_in?(@course) %>
+                <%= link_to "Unenroll", enrol_path(@course), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to unenroll from this course?" }, class: "btn-unenroll" %>
+              <% else %>
+                <%= link_to "Enroll", enrol_new_course_path(@course), class: "btn-enrol" %>
+              <% end %>
+            <% end %>
           </div>
+
           <% if user_signed_in? && @course.user == current_user %>
-          <div class="d-flex">
-            <% if policy(@course).edit? %>
-              <%= link_to edit_course_path(@course) do %>
-                <i class="fas fa-edit me-3 "></i>
+            <div class="d-flex">
+              <% if policy(@course).edit? %>
+                <%= link_to edit_course_path(@course) do %>
+                  <i class="fas fa-edit me-3 "></i>
+                <% end %>
               <% end %>
-            <% end %>
-            <% if policy(@course).destroy? %>
-              <%= link_to @course, method: :delete, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-                <i class="fas fa-trash-alt"></i>
+              <% if policy(@course).destroy? %>
+                <%= link_to @course, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this course?" } do %>
+                  <i class="fas fa-trash-alt"></i>
+                <% end %>
               <% end %>
-            <% end %>
-          </div>
+            </div>
           <% end %>
         </div>
       </div>
     </div>
+
     <div class="col-5">
-            <h2>✴️ Reviews</h2>
+      <h2>✴️ Reviews</h2>
       <div class="card">
         <div class="card-body">
           <p class="card-text">Rating: <%= @course.rating %></p>
@@ -66,7 +67,7 @@
               </div>
             </div>
           <% end %>
-          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </div
