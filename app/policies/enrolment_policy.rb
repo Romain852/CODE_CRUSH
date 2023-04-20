@@ -1,13 +1,14 @@
 class EnrolmentPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      # if user.admin?
       scope.all
-      # else
-      # scope.joins(:enrolment).where("enrolment.user_id = ?", user.id)
-      # scope.joins(:course).where("courses.user_id = ?", user.id)
-      # end
-    end
+    #   if user.admin?
+    #     scope.all
+    #   else
+    #     # scope.joins(:enrolment).where("enrolment.user_id = ?", user.id)
+    #     scope.joins(:course).where("courses.user_id = ?", user.id)
+    #   end
+     end
   end
 
   def index?
@@ -36,6 +37,22 @@ class EnrolmentPolicy < ApplicationPolicy
 
   def new?
     create?
+  end
+
+  def data?
+    true
+  end
+
+  def fullstack?
+    true
+  end
+
+  def search?
+    true
+  end
+
+  def enroll?
+    true
   end
 
 end

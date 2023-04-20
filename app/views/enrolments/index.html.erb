@@ -9,9 +9,6 @@
             <p class="card-text"><%= enrolment.course.description %></p>
             <%= link_to "Course Content", course_path(enrolment.course), class: "btn btn-primary btn-enrol" %>
             <%= link_to "Review This Course", new_enrolment_review_path(enrolment), class: "btn btn-secondary btn-view" %>
-            <%= form_with url: remove_enrolment_path(enrolment.id), method: :delete do |f| %>
-              <%= f.submit "Unenroll", class: "btn btn-danger" %>
-            <% end %>
           </div>
         </div>
       </li>
