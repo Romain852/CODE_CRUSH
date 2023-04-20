@@ -12,7 +12,9 @@ class CoursesController < ApplicationController
     authorize Course
   end
 
-
+  def my_courses
+    @courses = current_user.courses
+  end
 
   def show
     @reviews = @course.reviews
@@ -62,6 +64,17 @@ class CoursesController < ApplicationController
   def data
     @courses = Course.where(category: "Data")
     authorize @courses
+  end
+
+  # Code added to cancel enrolments
+  def cancel_enrolment
+    @enrolment = current_user.enrolments.find(params[:id])
+    authorize @enrolment
+    if @enrolment.destroy
+      redirect_to enrolments_path, notice: 'Enrolment was successfully cancelled.'
+    else
+      redirect_to enrolments_path, alert: 'Enrolment could not be cancelled.'
+    end
   end
 
   private

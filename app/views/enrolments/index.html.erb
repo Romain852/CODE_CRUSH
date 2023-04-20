@@ -1,14 +1,20 @@
 <div class="container">
-  <h1>My learning track aka courses enrolled </h1>
-  <ul>
+  <h1>My learning track aka courses enrolled</h1>
+  <ul class="list-group">
     <% @current_user_enrolments.each do |enrolment| %>
-      <li>
-        <div class="card-body">
-          <h5 class="card-title"><%= enrolment.course.title %></h5>
-          <p class="card-text"><%= enrolment.course.description %></p>
-        <%= link_to "Course Content", course_path(enrolment.course), class: "btn btn-gradient" %>
-        <%= link_to "Review This Course", new_enrolment_review_path(enrolment), class: "btn btn-gradient" %>
+      <li class="list-group-item">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= enrolment.course.title %></h5>
+            <p class="card-text"><%= enrolment.course.description %></p>
+            <%= link_to "Course Content", course_path(enrolment.course), class: "btn btn-primary btn-enrol" %>
+            <%= link_to "Review This Course", new_enrolment_review_path(enrolment), class: "btn btn-secondary btn-view" %>
+            <%= form_with url: remove_enrolment_path(enrolment.id), method: :delete do |f| %>
+              <%= f.submit "Unenroll", class: "btn btn-danger" %>
+            <% end %>
+          </div>
         </div>
       </li>
     <% end %>
+  </ul>
 </div>

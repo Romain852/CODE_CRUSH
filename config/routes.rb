@@ -10,9 +10,8 @@ Rails.application.routes.draw do
     end
   end
 
-  Rails.application.routes.draw do
-    get '/my_courses', to: 'courses#my_courses'
-  end
+  get '/my_courses', to: 'courses#my_courses'
+
 
 
   resources :courses do
@@ -34,5 +33,9 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'pages#dashboard'
 
   resources :reviews, only: [:new, :create, :edit, :update, :destroy]
+
+  delete "enrol/:id", to: "enrolments#destroy", as: :enrol
+  delete 'enrolments/:id/remove', to: 'enrolments#remove_enrolment', as: 'remove_enrolment'
+
 
 end

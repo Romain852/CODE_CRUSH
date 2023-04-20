@@ -13,24 +13,33 @@ class EnrolmentsController < ApplicationController
   end
 
   def new
+    @course = Course.find(params[:course_id])
     @enrolment = @course.enrolments.build
     authorize @enrolment
   end
 
   def create
     @course = Course.find(params[:id])
+    authorize @course
+
     @enrolment = Enrolment.new(course: @course)
     @enrolment.user = current_user
-    # raise
-    # @enrolment = @course.enrolments.build(enrolment_params)
-    # @enrolment.user = current_user
+    authorize @enrolment
+
     if @enrolment.save
-      redirect_to course_enrolments_path(@course), notice: 'Enrolment was successfully created.'
+      redirect_to enrolments_path, notice: 'Enrolment was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
-    authorize @course
+  end
+
+
+
+  def destroy
+    @enrolment = current_user.enrolments.find(params[:enrolment_id])
     authorize @enrolment
+    @enrolment.destroy
+    redirect_to enrolments_path, notice: 'Enrolment was successfully destroyed.'
   end
 
   private
