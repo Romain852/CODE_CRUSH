@@ -27,7 +27,8 @@
       <div class="col-md-4">
         <div class="card mb-4">
           <% if course.photo.key.nil? %>
-            <img src="https://via.placeholder.com/400x400" class="card-img-top" style="margin-bottom: 20px;">
+            <%# <img src="https://via.placeholder.com/400x400" class="card-img-top" style="margin-bottom: 20px;"> %>
+            <%= image_tag "https://source.unsplash.com/featured?study&#{rand(1000)}", class: "card-img-top", style: "margin-bottom: 20px;width: 400px; height: 400px;" %>
           <% else %>
             <%= cl_image_tag course.photo.key, height: 400, width: 400, class: "card-img-top mb-4", crop: :fill %>
           <% end %>
