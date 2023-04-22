@@ -3,13 +3,13 @@ class CoursesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index, :data, :fullstack]
 
   def index
+    @courses = policy_scope(Course)
     @courses = Course.all
     if params[:query].present?
       @courses = Course.search(params[:query])
     else
       @courses = Course.all
     end
-    authorize Course
   end
 
   def my_courses
